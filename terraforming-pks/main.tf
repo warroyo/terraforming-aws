@@ -47,6 +47,7 @@ module "infra" {
   env_name           = "${var.env_name}"
   availability_zones = "${var.availability_zones}"
   vpc_cidr           = "${var.vpc_cidr}"
+  vpc_id             = "${var.vpc_id}"
   internetless       = "${var.internetless}"
 
   hosted_zone = "${var.hosted_zone}"
