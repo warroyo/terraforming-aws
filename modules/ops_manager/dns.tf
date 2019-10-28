@@ -15,7 +15,7 @@ resource "aws_route53_record" "ops_manager_unattached_eip" {
   ttl     = 300
   count   = "${var.use_route53 && (local.ops_man_vm < 1) ? 1 : 0}"
 
-  records = ["${aws_eip.ops_manager_unattached.*.public_ip}"]
+  records = ["${coalesce(join("", aws_eip.ops_manager_attached.*.public_ip), aws_instance.ops_manager.private_ip)}"]
 }
 
 resource "aws_route53_record" "optional_ops_manager" {
