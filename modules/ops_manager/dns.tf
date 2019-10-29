@@ -13,7 +13,7 @@ resource "aws_route53_record" "ops_manager_unattached_eip" {
   zone_id = "${var.zone_id}"
   type    = "A"
   ttl     = 300
-  count   = "${var.use_route53 && (local.ops_man_vm < 1) && (var.private != true) ? 1 : 0}"
+  count   = "${var.use_route53 && (local.ops_man_vm < 1) && !var.private ? 1 : 0}"
 
   records = ["${aws_eip.ops_manager_unattached.*.public_ip}"]
 }
